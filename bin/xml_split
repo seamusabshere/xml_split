@@ -1,3 +1,21 @@
 #!/usr/bin/env ruby
 
 require 'xml_split'
+
+if ARGV.length == 3
+  input_path, element, output_prefix = ARGV
+  x = XmlSplit.new(input_path, element)
+  base_output_path = File.expand_path output_prefix
+  unless File.directory?(File.dirname(base_output_path))
+    $stderr.puts "Creating directory structure #{File.dirname(base_output_path)}"
+    require 'fileutils'
+    FileUtils.mkdir_p File.dirname(base_output_path)
+  end
+  x.each_with_index do |part, i|
+    File.open("#{base_output_path}_#{'%010d' % i}", 'w') do |f|
+      f.write part
+    end
+  end
+else
+  puts "Usage: xml_split INPUTPATH ELEMENT OUTPUTPREFIX"
+end

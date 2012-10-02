@@ -6,6 +6,12 @@ Uses [sgrep](http://www.cs.helsinki.fi/u/jjaakkol/sgrepman.html) internally.
 
 As seen on ["Split XML files with `sgrep`, a classic UNIX utility from 1995"](http://numbers.brighterplanet.com/2012/09/11/split-xml-files-with-unix-utility-sgrep/)
 
+Similar, but not identical, to [XML-Twig's xml_split](http://search.cpan.org/~mirod/XML-Twig-3.41/tools/xml_split/xml_split).
+
+## Dependencies
+
+Currently requires that you have `sgrep` or `sgrep2` in your path.
+
 ## Usage
 
     >> require 'xml_split'
@@ -22,6 +28,26 @@ As seen on ["Split XML files with `sgrep`, a classic UNIX utility from 1995"](ht
         </timePeriod>
         <value>302</value>
     </IntervalReading>
+    [...]
+
+## Command-line
+
+    gem install xml_split
+
+This will give you a binary called `xml_split`. You can use it to split XML files into many smaller files:
+
+    $ xml_split ~/samples/CLF8762E_20120709.xml MyElement CLF8762E/20120709
+    [...]
+    $ ls CLF8762E
+    20120709_0000000000
+    20120709_0000000001
+    20120709_0000000002
+    20120709_0000000003
+    20120709_0000000004
+    20120709_0000000005
+    20120709_0000000006
+    20120709_0000000007
+    20120709_0000000008
     [...]
 
 ## Copyright
