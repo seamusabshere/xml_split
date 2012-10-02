@@ -1,29 +1,29 @@
 # XmlSplit
 
-TODO: Write a gem description
+Split XML files on an element, yielding (streaming, so constant memory usage) each node in turn.
 
-## Installation
+Uses [sgrep](http://www.cs.helsinki.fi/u/jjaakkol/sgrepman.html) internally.
 
-Add this line to your application's Gemfile:
-
-    gem 'xml_split'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install xml_split
+As seen on ["Split XML files with `sgrep`, a classic UNIX utility from 1995"](http://numbers.brighterplanet.com/2012/09/11/split-xml-files-with-unix-utility-sgrep/)
 
 ## Usage
 
-TODO: Write usage instructions here
+    >> require 'xml_split'
+    => true
+    >> x = XmlSplit.new('15MinLP_15Days.xml', 'IntervalReading')
+    => #<XmlSplit:0x0000010395ce60 @nodes=[], @cache_full=false, @path="/tmp/scratch/15MinLP_15Days.xml", @element="IntervalReading", @caching=false>
+    >> x.each { |node| puts node }
+    <IntervalReading>
+        <cost>907</cost>
+        <timePeriod>
+            <duration>900</duration>
+            <start>1330578000</start>
+             <!-- 3/1/2012 5:00:00 AM  -->
+        </timePeriod>
+        <value>302</value>
+    </IntervalReading>
+    [...]
 
-## Contributing
+## Copyright
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Copyright 2012 Brighter Planet, Inc.
